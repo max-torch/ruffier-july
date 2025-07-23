@@ -28,7 +28,7 @@ tinnitus, shortness of breath, etc.) stop the test and consult a physician.
 """)
         button = QPushButton("Start")
         layout.addWidget(label, alignment=Qt.AlignLeft)
-        layout.addWidget(line1, alignment=Qt.AlignLeft)
+        layout.addWidget(paragraph, alignment=Qt.AlignLeft)
         layout.addWidget(button, alignment=Qt.AlignCenter)
         self.setLayout(layout)
         
