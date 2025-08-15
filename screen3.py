@@ -15,6 +15,8 @@ class Screen3(QWidget):
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
 
+        
+
 if __name__ == "__main__":
     app = QApplication([])
     window = Screen3()

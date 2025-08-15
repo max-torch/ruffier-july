@@ -15,7 +15,6 @@ from PyQt5.QtWidgets import (
 
 import screen1 as scr1
 import screen2 as scr2
-import screen3 as scr3
 
 def on_button_clicked():
     screen2.show()
@@ -28,7 +27,6 @@ def on_button_clicked2():
 app = QApplication([])
 screen1 = scr1.Screen1()
 screen2 = scr2.Screen2()
-screen3 = scr3.Screen3()
 screen1.button.clicked.connect(on_button_clicked)
 screen2.result.clicked.connect(on_button_clicked2)
 

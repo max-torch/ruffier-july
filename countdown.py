@@ -34,7 +34,6 @@ class countdown(QWidget):
 
         
 
-        super().__init__()
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(start_countdown)
