@@ -195,7 +195,8 @@ The seconds that should be measured are indicated in green and the minutes that 
                                 assessment = "Above Average"
                         elif self.calc < 0.5:
                                 assessment = "High"
-                self.countdown.setText(assessment)
+                self.countdown.setText(f"{assessment} {self.calc}")
+
         self.result.clicked.connect(resultclicked)
 
 # -------------------------------------------------------------------------------------------------------------------------------
