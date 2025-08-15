@@ -1,4 +1,8 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import (
+    QTimer,
+    Qt,
+    QTime
+)
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
@@ -35,12 +39,7 @@ Press the "Start final test" button to start the timer.
 The seconds that should be measured are indicated in green and the minutes that should not be measured are indicated in black. Write down the results in the appropriate fields.
 """)
 
-        self.input_name = QLineEdit()
-        self.input_name.setPlaceholderText("Full Name")
-        self.input_year = QLineEdit()
-        self.input_year.setPlaceholderText("0")
-        self.start = QPushButton("Start first test")
-        self.countdown = QLabel("00:00:00")
+
         self.start_num = QLineEdit()
         self.start_num.setPlaceholderText("0")
         self.squat = QPushButton("Start doing squats")
@@ -50,7 +49,38 @@ The seconds that should be measured are indicated in green and the minutes that 
         self.final_num2 = QLineEdit()
         self.final_num2.setPlaceholderText("0")
         self.result = QPushButton("Send the results")
-    
+
+        self.input_name = QLineEdit()
+        self.input_name.setPlaceholderText("Full Name")
+        self.input_year = QLineEdit()
+        self.input_year.setPlaceholderText("0")
+        self.start = QPushButton("Start first test")
+        def clicked():
+                self.timer.stop()
+                self.timer.disconnect()
+                self.current_time = QTime(0, 0, 15)
+                self.countdown.setText(self.current_time.toString("hh:mm:ss"))
+                self.timer.timeout.connect(start_countdown)
+                self.timer.start(1000)
+
+
+
+        def start_countdown():
+                # print the current time
+                print(self.current_time.toString())
+                self.current_time = self.current_time.addSecs(-1)
+
+                self.countdown.setText(self.current_time.toString("hh:mm:ss"))
+                if self.current_time == QTime(0, 0, 0):
+                        if self.countdown.text() == "00:00:00":  
+                                self.timer.stop()
+
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(start_countdown)
+        self.current_time = QTime(0, 0, 15) # current countdown time
+
+        self.countdown = QLabel("00:00:00")
+        self.start.clicked.connect(clicked)
 
         self.layout2.addWidget(self.label, alignment=Qt.AlignLeft | Qt.AlignTop)
         self.layout2.addWidget(self.input_name, alignment=Qt.AlignLeft | Qt.AlignTop)
